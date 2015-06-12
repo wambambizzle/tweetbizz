@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
+
 
 @interface AppDelegate ()
 
@@ -17,6 +20,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [Fabric with:@[TwitterKit]];
+
+    [[Twitter sharedInstance] startWithConsumerKey:@"dwMmiLxGS74wPnBkx4dLZSnXc" consumerSecret:@"8IrdPVVdMtKfCGTPMMQGvjCW3NH5TrKyGOxiBHXmAIGeJNMCEe"];
+    [Fabric with:@[[Twitter sharedInstance]]];
+    
     return YES;
 }
 
