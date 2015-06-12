@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "STTwitter.h"
+#import <TwitterKit/TwitterKit.h>
+
 
 #define kOAuthConsumerKey @"dwMmiLxGS74wPnBkx4dLZSnXc"
 #define kOAuthConsumerSecret @"8IrdPVVdMtKfCGTPMMQGvjCW3NH5TrKyGOxiBHXmAIGeJNMCEe"
@@ -47,6 +49,14 @@
     //            // Show the errorString somewhere and let the user try again.
     //        }
     //    }];
+    
+    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error)
+    {
+        // play with Twitter session
+    }];
+    logInButton.center = self.view.center;
+    [self.view addSubview:logInButton];
+
     
     self.username.delegate = self;
     self.password.delegate = self;

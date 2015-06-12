@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 @interface AppDelegate ()
 
@@ -23,6 +25,9 @@
                   clientKey:@"gI78cNpVQPc2SNdyzTERmWvWkZh5AeKRVDQu4JmQ"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [Fabric with:@[TwitterKit]];
+
     
     return YES;
 }
