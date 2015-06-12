@@ -44,6 +44,7 @@
 		A8F86A811B292097000DA625 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F86A801B292097000DA625 /* libz.dylib */; };
 		A8F86A831B2920A4000DA625 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F86A821B2920A4000DA625 /* libsqlite3.dylib */; };
 		A8FB0D501B2A3A1B00E051BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FB0D4F1B2A3A1B00E051BA /* LoginViewController.m */; };
+		A8FB0D531B2A508600E051BA /* TweetsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FB0D521B2A508600E051BA /* TweetsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		A8F86A821B2920A4000DA625 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A8FB0D4E1B2A3A1B00E051BA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A8FB0D4F1B2A3A1B00E051BA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		A8FB0D511B2A508600E051BA /* TweetsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsTableViewController.h; sourceTree = "<group>"; };
+		A8FB0D521B2A508600E051BA /* TweetsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +179,7 @@
 			children = (
 				A8F86A121B291105000DA625 /* AppDelegate.h */,
 				A8F86A131B291105000DA625 /* AppDelegate.m */,
-				A8FB0D4E1B2A3A1B00E051BA /* LoginViewController.h */,
-				A8FB0D4F1B2A3A1B00E051BA /* LoginViewController.m */,
+				A8FB0D541B2A515800E051BA /* View Controllers */,
 				A8F86A181B291105000DA625 /* Main.storyboard */,
 				A8F86A1B1B291105000DA625 /* Images.xcassets */,
 				A8F86A1D1B291105000DA625 /* LaunchScreen.xib */,
@@ -284,6 +286,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		A8FB0D541B2A515800E051BA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8FB0D4E1B2A3A1B00E051BA /* LoginViewController.h */,
+				A8FB0D4F1B2A3A1B00E051BA /* LoginViewController.m */,
+				A8FB0D511B2A508600E051BA /* TweetsTableViewController.h */,
+				A8FB0D521B2A508600E051BA /* TweetsTableViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,6 +400,7 @@
 				A8F86A5D1B291335000DA625 /* STTwitterOS.m in Sources */,
 				A8F86A571B291335000DA625 /* NSString+STTwitter.m in Sources */,
 				A8F86A561B291335000DA625 /* NSError+STTwitter.m in Sources */,
+				A8FB0D531B2A508600E051BA /* TweetsTableViewController.m in Sources */,
 				A8F86A141B291105000DA625 /* AppDelegate.m in Sources */,
 				A8F86A621B291335000DA625 /* STHTTPRequest.m in Sources */,
 				A8F86A551B291335000DA625 /* NSDateFormatter+STTwitter.m in Sources */,

@@ -7,6 +7,12 @@
 //
 
 #import "LoginViewController.h"
+#import "STTwitter.h"
+
+#define kOAuthConsumerKey @"dwMmiLxGS74wPnBkx4dLZSnXc"
+#define kOAuthConsumerSecret @"8IrdPVVdMtKfCGTPMMQGvjCW3NH5TrKyGOxiBHXmAIGeJNMCEe"
+
+
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -55,21 +61,6 @@
     self.title = @"tweetbizz";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(IBAction)loginWithUserName:(id)sender
-{
-    
-}
-
--(IBAction)signUpOnTheWeb:(id)sender
-{
-    
-}
-
 #pragma mark - UITextField delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -95,6 +86,40 @@
     
     return rc;
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)loginWithUserName:(id)sender
+{
+    
+}
+
+-(IBAction)signUpOnTheWeb:(id)sender
+{
+    
+}
+
+- (void) loginWithUser:(NSString*)user password:(NSString*)password
+{
+    user = self.username.text;
+   
+    password = self.password.text;
+    
+   STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerKey:kOAuthConsumerKey
+                                            consumerSecret:kOAuthConsumerSecret
+                                                  username:user
+                                                  password:password];
+    
+    [twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+        // ...
+    } errorBlock:^(NSError *error) {
+        // ...
+    }];
+}
+
 
 /*
 #pragma mark - Navigation
