@@ -41,17 +41,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vs2-1l-WEX">
+                                <rect key="frame" x="273" y="562" width="56" height="30"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="o01-We-Uxg" eventType="touchUpInside" id="1zW-uT-b70"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="RiY-Q9-ixC" secondAttribute="centerY" constant="121.5" id="OU9-1M-5lO"/>
+                            <constraint firstItem="x9M-2z-TRg" firstAttribute="top" secondItem="Vs2-1l-WEX" secondAttribute="bottom" constant="8" id="YIV-Pl-lKW"/>
+                            <constraint firstAttribute="centerX" secondItem="Vs2-1l-WEX" secondAttribute="centerX" constant="-1" id="g3w-D2-PQX"/>
                             <constraint firstAttribute="centerX" secondItem="RiY-Q9-ixC" secondAttribute="centerX" constant="3.5" id="wUn-X9-ySD"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6IU-2n-RLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="413"/>
+            <point key="canvasLocation" x="2154" y="421"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IhB-es-nu9">

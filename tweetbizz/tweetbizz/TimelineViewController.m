@@ -7,8 +7,13 @@
 //
 
 #import "TimelineViewController.h"
+#import <TwitterKit/TwitterKit.h>
 
 @interface TimelineViewController ()
+
+@property (weak, nonatomic) NSString *currentUser;
+
+- (IBAction)logoutTapped:(UIButton *)sender;
 
 @end
 
@@ -17,7 +22,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+//    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
+//        if (guestSession) {
+//            TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
+//            TWTRSearchTimelineDataSource *searchTimelineDataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:@"#twitterflock" APIClient:APIClient];
+////            self.dataSource = searchTimelineDataSource;
+//        } else {
+//            NSLog(@"error: %@", [error localizedDescription]);
+//        }
+//    }];
+    
+    
+// experiement
+    if ([[[Twitter sharedInstance] session] userName])
+    {
+        self.currentUser = [[[Twitter sharedInstance] session] userName];
+        
+        TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
+        TWTRUserTimelineDataSource *userTimelineDataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:self.currentUser APIClient:APIClient];
+//            self.dataSource = userTimelineDataSource;
+        
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -25,6 +53,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)logoutTapped:(UIButton *)sender
+{
+   [[Twitter sharedInstance] logOut];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 /*
 #pragma mark - Navigation

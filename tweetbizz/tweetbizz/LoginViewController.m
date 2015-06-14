@@ -21,53 +21,113 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
-        if (session) {
-            NSLog(@"signed in as %@", [session userName]);
-        } else {
-            NSLog(@"error: %@", [error localizedDescription]);
-        }
-    }];
-    logInButton.center = self.view.center;
-    [self.view addSubview:logInButton];
     
-    // Completion Block
-    [[Twitter sharedInstance] logInWithCompletion:^
-     (TWTRSession *session, NSError *error) {
-         if (session)
-         {
-             //configure push to new view here
-//             TimelineViewController *timeLineVC = [[TimelineViewController alloc] init];
-//             [self.navigationController pushViewController:timeLineVC animated:YES];
-             
-             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-             UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"TimeLineNavController"];
-//             TimelineViewController *timeLineVC = [navC viewControllers][0];
-            [self presentViewController:navC animated:YES completion:nil];
+    if([[Twitter sharedInstance] session])
+    {
+//        NSLog(@"session already present!!!");
+//        NSLog(@"signed in as %@", [[[Twitter sharedInstance] session] userName]);
+        [self alreadyLoggedPushtoTimeline];
+    }
+    else
+    {
+        [self loginUserToTwitter];
+        if ([[Twitter sharedInstance] session])
+        {
+            [self alreadyLoggedPushtoTimeline];
+        }
+    }
 
-             NSLog(@"signed in as %@", [session userName]);
-         }
-         else
-         {
-             NSLog(@"error: %@", [error localizedDescription]);
-         }
-     }];
     
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (![[Twitter sharedInstance] session])
+    {
+        [self loginUserToTwitter];
+    }
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+-(void)loginUserToTwitter
+{
+        TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
+            if (error)
+            {
+                NSLog(@"error: %@", [error localizedDescription]);
+            }
+            
+        }];
+    
+        logInButton.center = self.view.center;
+        [self.view addSubview:logInButton];
+    
+        // Completion Block
+//        [[Twitter sharedInstance] logInWithCompletion:^
+//         (TWTRSession *session, NSError *error) {
+//             if (session)
+//             {
+////                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+////                 UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"TimeLineNavController"];
+////    //             TimelineViewController *timeLineVC = [navC viewControllers][0];
+////                [self presentViewController:navC animated:YES completion:nil];
+//    
+//                 NSLog(@"signed in as %@", [session userName]);
+//             }
+//             else if (error)
+//             {
+//                 NSLog(@"error: %@", [error localizedDescription]);
+//             }
+//         }];
+    
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+-(void)alreadyLoggedPushtoTimeline
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"TimeLineNavController"];
+    //             TimelineViewController *timeLineVC = [navC viewControllers][0];
+    [self presentViewController:navC animated:YES completion:nil];
+}
+
+
+//    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
+//        if (session)
+//        {
+//            NSLog(@"signed in as %@", [session userName]);
+//        }
+//        else
+//        {
+//            NSLog(@"error: %@", [error localizedDescription]);
+//        }
+//    }];
+//
+//    logInButton.center = self.view.center;
+//    [self.view addSubview:logInButton];
+//
+//    // Completion Block
+//    [[Twitter sharedInstance] logInWithCompletion:^
+//     (TWTRSession *session, NSError *error) {
+//         if (session)
+//         {
+//             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//             UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"TimeLineNavController"];
+////             TimelineViewController *timeLineVC = [navC viewControllers][0];
+//            [self presentViewController:navC animated:YES completion:nil];
+//
+//             NSLog(@"signed in as %@", [session userName]);
+//         }
+//         else
+//         {
+//             NSLog(@"error: %@", [error localizedDescription]);
+//         }
+//     }];
 
 @end
