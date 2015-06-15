@@ -26,12 +26,13 @@
 //    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
 //        if (guestSession) {
 //            TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
-//            TWTRSearchTimelineDataSource *searchTimelineDataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:@"#twitterflock" APIClient:APIClient];
-////            self.dataSource = searchTimelineDataSource;
+//            TWTRUserTimelineDataSource *userTimelineDataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:@"fabric" APIClient:APIClient];
+//            self.dataSource = userTimelineDataSource;
 //        } else {
 //            NSLog(@"error: %@", [error localizedDescription]);
 //        }
 //    }];
+//}
     
     
 // experiement
@@ -41,10 +42,13 @@
         
         TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
         TWTRUserTimelineDataSource *userTimelineDataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:self.currentUser APIClient:APIClient];
-//            self.dataSource = userTimelineDataSource;
-        
+            self.dataSource = userTimelineDataSource;
     }
-    
+    else
+    {
+        NSLog(@"Erorr!");
+    }
+
 
 }
 

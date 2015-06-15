@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <TwitterKit/TwitterKit.h>
 
-@interface TimelineViewController : UIViewController
+@interface TimelineViewController : TWTRTimelineViewController
 
 @end
