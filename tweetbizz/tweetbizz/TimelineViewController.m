@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) NSString *currentUser;
 
-- (IBAction)logoutTapped:(UIButton *)sender;
+- (IBAction)logoutTapped:(UIBarButtonItem *)sender;
 
 @end
 
@@ -22,20 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
-//    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
-//        if (guestSession) {
-//            TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
-//            TWTRUserTimelineDataSource *userTimelineDataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:@"fabric" APIClient:APIClient];
-//            self.dataSource = userTimelineDataSource;
-//        } else {
-//            NSLog(@"error: %@", [error localizedDescription]);
-//        }
-//    }];
-//}
-    
-    
-// experiement
     if ([[[Twitter sharedInstance] session] userName])
     {
         self.currentUser = [[[Twitter sharedInstance] session] userName];
@@ -61,7 +49,11 @@
 - (IBAction)logoutTapped:(UIButton *)sender
 {
    [[Twitter sharedInstance] logOut];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavC"];
+    [self presentViewController:navC animated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Logout tapped");
 }
 
 

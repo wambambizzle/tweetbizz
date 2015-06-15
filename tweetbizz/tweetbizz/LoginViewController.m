@@ -92,8 +92,7 @@
 -(void)alreadyLoggedPushtoTimeline
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"TimeLineNavController"];
-    //             TimelineViewController *timeLineVC = [navC viewControllers][0];
+    UINavigationController *navC = [storyboard instantiateViewControllerWithIdentifier:@"TimelineNavC"];    
     [self presentViewController:navC animated:YES completion:nil];
 }
 
