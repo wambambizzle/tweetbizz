@@ -43,7 +43,11 @@
                                 <action selector="logoutTapped:" destination="o01-We-Uxg" id="Ini-pC-6p4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="hVK-8x-KZi"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="hVK-8x-KZi">
+                            <connections>
+                                <action selector="composeNewTweetTapped:" destination="o01-We-Uxg" id="Bxv-8z-l4R"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>

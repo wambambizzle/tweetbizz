@@ -14,6 +14,7 @@
 @property (weak, nonatomic) NSString *currentUser;
 
 - (IBAction)logoutTapped:(UIBarButtonItem *)sender;
+- (IBAction)composeNewTweetTapped:(UIBarButtonItem *)sender;
 
 @end
 
@@ -23,19 +24,7 @@
 {
     [super viewDidLoad];
 
-    
-    if ([[[Twitter sharedInstance] session] userName])
-    {
-        self.currentUser = [[[Twitter sharedInstance] session] userName];
-        
-        TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
-        TWTRUserTimelineDataSource *userTimelineDataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:self.currentUser APIClient:APIClient];
-            self.dataSource = userTimelineDataSource;
-    }
-    else
-    {
-        NSLog(@"Erorr!");
-    }
+    [self showUserTimeLine];
 
 
 }
@@ -46,6 +35,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)showUserTimeLine
+{
+    if ([[[Twitter sharedInstance] session] userName])
+    {
+        self.currentUser = [[[Twitter sharedInstance] session] userName];
+        
+        TWTRAPIClient *APIClient = [[Twitter sharedInstance] APIClient];
+        TWTRUserTimelineDataSource *userTimelineDataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:self.currentUser APIClient:APIClient];
+        self.dataSource = userTimelineDataSource;
+    }
+    else
+    {
+        NSLog(@"Erorr!");
+    }
+}
+
 - (IBAction)logoutTapped:(UIButton *)sender
 {
    [[Twitter sharedInstance] logOut];
@@ -54,6 +59,23 @@
     [self presentViewController:navC animated:YES completion:nil];
 //    [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"Logout tapped");
+}
+
+- (IBAction)composeNewTweetTapped:(UIBarButtonItem *)sender
+{
+    TWTRComposer *composer = [[TWTRComposer alloc] init];
+    
+//    [composer setText:@"What's good!?"];
+//    [composer setImage:[UIImage imageNamed:@"fabric"]];
+    
+    [composer showWithCompletion:^(TWTRComposerResult result) {
+        if (result == TWTRComposerResultCancelled) {
+            NSLog(@"Tweet composition cancelled");
+        }
+        else {
+            NSLog(@"Sending Tweet!");
+        }
+    }];
 }
 
 
